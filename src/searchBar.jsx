@@ -1,10 +1,19 @@
-function SearchBar() {
+function SearchBar({ setQuery }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Call setQuery with the current value of the input field
+    setQuery(e.target.querySelector('#search-bar').value);
+  };
+
   return (
-    <form className="flex items-center max-w-lg mx-auto">
+    <form
+      className="flex items-center max-w-lg mx-auto"
+      onSubmit={handleSubmit}
+    >
       <div className="relative w-full">
         <input
           type="text"
-          id="voice-search"
+          id="search-bar"
           className="m-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Search Posts, Comments..."
           required

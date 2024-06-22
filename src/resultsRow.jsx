@@ -1,5 +1,0 @@
-/*function ResRow(params) {
-    return(
-
-    )
-}*/

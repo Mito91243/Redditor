@@ -1,10 +1,13 @@
+import { useState } from "react";
 import SearchBar from "./searchBar";
-import ResHeader from "./resultsHeader";
+import Table from "./table";
 function App() {
+  const [query, setQuery] = useState("");
+  console.log(query)
   return (
     <>
-    <SearchBar/>
-    <ResHeader/>
+      <SearchBar setQuery={setQuery}/>
+      <Table />
     </>
   );
 }
