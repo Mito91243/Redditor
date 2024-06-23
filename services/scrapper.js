@@ -1,10 +1,10 @@
 import { load } from "cheerio";
 
-function Get_Results() {
+async function Get_Results(x) {
   let counter = 0;
   let resultsJson = {};
 
-  fetch(
+  await fetch(
     "https://www.google.com/search?q=i5+12400f+vs+ryzen+5600+reddit&oq=i5+12400f+vs+ryzen+5600+reddit"
   )
     .then((response) => response.text())
@@ -18,16 +18,23 @@ function Get_Results() {
         .filter((href) => href && href.includes("comments"));
 
       relevantStrings.forEach((string) => {
-        resultsJson[`result_${counter}`] = string.slice(7,-86);
+        resultsJson[`result_${counter}`] = string.slice(7, -86);
         counter = counter + 1;
       });
-      console.log(JSON.stringify(resultsJson,null,`\t`));
+      //console.log(JSON.stringify(resultsJson, null, `\t`));
     })
     .catch((error) => console.error("Error:", error));
+  console.log(JSON.stringify(resultsJson));
+  return JSON.stringify(resultsJson, null);
+}
+
+function Get_Comments_Res(resjson) {
+  for (const key in resjson) {
+  }
 }
 
 function run(params) {
-    let resjson = Get_Results()
-    let comments = Get_Comments_Res()
+  let resjson = Get_Results("prop");
+  let comments = Get_Comments_Res(resjson);
 }
-Get_Results("s");
+run("prop")
